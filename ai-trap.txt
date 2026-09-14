@@ -1,0 +1,11 @@
+Create a single-page app in a single HTML file with the following requirements:
+- Name: Trap
+- Goal: Guess a number between 1 and 100. The players guessing two number each turn. The game will tell them if their guess contains the number, or if they are above or below.
+- For each game, a random number from 1 to 100 (inclusive) is created.
+- The player has six turns in each game.
+- For each turn, the player can enter two numbers each guess. Order of the numbers doesn't matter. 
+- If they player guesses the same number for both, and it matches the random number, they win.
+- Any other guess just narrows things down — tells you whether the secret is trapped between your two numbers, or above both, or below both — but never ends the game on its own.
+- Miss all 6 exact guesses and it reveals the number.
+- The UI will be done in text. The font will be what you described that called "Urban enamel street sign"
+- After a game, win or loss, the name game is started.

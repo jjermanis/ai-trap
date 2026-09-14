@@ -1,0 +1,25 @@
+Version 01.01	15 minutes dev	2 minutes CPU	3 minutes test		20 minutes
+
+I wanted to implement another Basic Computer Games app. The one I chose was
+Trap. I liked the game, and it's not a variant you see very often.
+To start off, as I worked on the initial design, I asked Claude if it had
+access to the book, and if it could determine how it was played. He could.
+Or rather, he said he could. Massive error in his version: selecting numbers
+that trap a number wins. You could win every game by selecting 1 to 100. 
+Obviously not good.
+For the initial version, I got Claude to understand the game rules, and to 
+give it classic style font: something from the 50's. It was a nice first
+pass. As always, plenty of items to follow up with.
+
+
+
+TODO defect - the results are not always shown. Unclear what causes that.
+	For sure that has to be fixed. It appears that it happens at 
+	the bottom of the view.
+TODO the font is too small. Doesn't need to be massive, but needs to be
+	bigger.
+TODO need to implement the text appear slowly. Certain ms per character,
+	certain ms between words
+TODO add music. Think background to detective film from 50's
+TODO check against original game I/O
+
