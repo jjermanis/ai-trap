@@ -301,6 +301,11 @@
         endGame(true);
         return;
       }
+      if (secret > a) {
+        addLine('My number is larger than your guess.', 'warn');
+      } else {
+        addLine('My number is smaller than your guess.', 'warn');
+      }
     } else {
       const low = Math.min(a, b);
       const high = Math.max(a, b);

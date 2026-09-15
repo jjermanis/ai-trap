@@ -12,10 +12,15 @@ give it classic style font: something from the 50's. It was a nice first
 pass. As always, plenty of items to follow up with.
 
 
+Version 01.02	10 minutes dev	3 minutes CPU	2 minutes test		35 minutes
 
-TODO defect - the results are not always shown. Unclear what causes that.
-	For sure that has to be fixed. It appears that it happens at 
-	the bottom of the view.
+The most significant defect was that there are times where you make a move
+and no response is shown. It makes the game unplayable. I asked Claude to
+resolve. The first attempt did not work. I showed Claude a screenshot to
+make it more clear. That did result in the issue being found and fixed.
+
+
+
 TODO the font is too small. Doesn't need to be massive, but needs to be
 	bigger.
 TODO need to implement the text appear slowly. Certain ms per character,
