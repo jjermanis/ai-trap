@@ -20,11 +20,15 @@ resolve. The first attempt did not work. I showed Claude a screenshot to
 make it more clear. That did result in the issue being found and fixed.
 
 
+Version 01.03	8 minutes dev	0 minutes CPU	2 minutes test		45 minutes
 
-TODO the font is too small. Doesn't need to be massive, but needs to be
-	bigger.
+The font sizes were small that I expected. I made some adjustments.
+
+
+
 TODO need to implement the text appear slowly. Certain ms per character,
 	certain ms between words
 TODO add music. Think background to detective film from 50's
 TODO check against original game I/O
+TODO this game has scrolling. Is it needed? I say no.
 
