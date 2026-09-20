@@ -215,6 +215,8 @@
 <script>
 (function () {
   const MAX_TURNS = 6;
+  const CHAR_DELAY_MS = 100;
+  const WORD_DELAY_MS = 200;
   const log = document.getElementById('log');
   const numA = document.getElementById('numA');
   const numB = document.getElementById('numB');
@@ -233,6 +235,25 @@
     log.scrollTop = log.scrollHeight;
   }
 
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function typeLine(text, cls) {
+    const p = document.createElement('p');
+    p.className = 'line' + (cls ? ' ' + cls : '');
+    log.appendChild(p);
+
+    for (let i = 0; i < text.length; i++) {
+      if (i > 0) {
+        const wordBoundary = text[i] === ' ' || text[i - 1] === ' ';
+        await sleep(wordBoundary ? WORD_DELAY_MS : CHAR_DELAY_MS);
+      }
+      p.textContent += text[i];
+      log.scrollTop = log.scrollHeight;
+    }
+  }
+
   function addDivider(text) {
     const p = document.createElement('p');
     p.className = 'divider';
@@ -241,16 +262,17 @@
     log.scrollTop = log.scrollHeight;
   }
 
-  function startGame(isFirst) {
+  async function startGame(isFirst) {
     secret = Math.floor(Math.random() * 100) + 1;
     turn = 0;
     over = false;
     errorMsg.textContent = '';
+    submitBtn.disabled = true;
     if (isFirst) {
-      addLine("I'm thinking of a number from 1 to 100. Six turns to trap it.", 'sys');
+      await typeLine("I'm thinking of a number from 1 to 100. Six turns to trap it.", 'sys');
     } else {
       addDivider('— NEW GAME —');
-      addLine("New number picked. Six turns to trap it.", 'sys');
+      await typeLine("New number picked. Six turns to trap it.", 'sys');
     }
     tryStatus.textContent = `TRY 1 OF ${MAX_TURNS}`;
     gameStatus.textContent = 'GAME IN PROGRESS';
@@ -260,20 +282,20 @@
     numA.focus();
   }
 
-  function endGame(won) {
+  async function endGame(won) {
     over = true;
     submitBtn.disabled = true;
     if (won) {
-      addLine(`YOU GOT IT! The number was ${secret}.`, 'win');
+      await typeLine(`YOU GOT IT! The number was ${secret}.`, 'win');
       gameStatus.textContent = 'YOU WIN';
     } else {
-      addLine(`Out of turns. The number was ${secret}.`, 'lose');
+      await typeLine(`Out of turns. The number was ${secret}.`, 'lose');
       gameStatus.textContent = 'YOU LOSE';
     }
     setTimeout(() => startGame(false), 1800);
   }
 
-  function submitGuess() {
+  async function submitGuess() {
     if (over) return;
     errorMsg.textContent = '';
 
@@ -294,6 +316,7 @@
     }
 
     turn++;
+    submitBtn.disabled = true;
 
     if (a === b) {
       addLine(`Turn ${turn}: ${a} and ${b}`, 'you');
@@ -302,9 +325,9 @@
         return;
       }
       if (secret > a) {
-        addLine('My number is larger than your guess.', 'warn');
+        await typeLine('My number is larger than your guess.', 'warn');
       } else {
-        addLine('My number is smaller than your guess.', 'warn');
+        await typeLine('My number is smaller than your guess.', 'warn');
       }
     } else {
       const low = Math.min(a, b);
@@ -312,11 +335,11 @@
       addLine(`Turn ${turn}: ${low} and ${high}`, 'you');
 
       if (secret >= low && secret <= high) {
-        addLine('Trapped — my number is between your two guesses.', 'warn');
+        await typeLine('Trapped — my number is between your two guesses.', 'warn');
       } else if (secret < low) {
-        addLine('My number is smaller than both your guesses.', 'warn');
+        await typeLine('My number is smaller than both your guesses.', 'warn');
       } else {
-        addLine('My number is larger than both your guesses.', 'warn');
+        await typeLine('My number is larger than both your guesses.', 'warn');
       }
     }
 
@@ -329,6 +352,7 @@
     numA.value = '';
     numB.value = '';
     numA.focus();
+    submitBtn.disabled = false;
   }
 
   submitBtn.addEventListener('click', submitGuess);

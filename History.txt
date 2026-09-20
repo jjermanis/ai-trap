@@ -25,9 +25,17 @@ Version 01.03	8 minutes dev	0 minutes CPU	2 minutes test		45 minutes
 The font sizes were small that I expected. I made some adjustments.
 
 
+Version 01.04	6 minutes dev	1 minute CPU	3 minutes test		55 minutes
 
-TODO need to implement the text appear slowly. Certain ms per character,
-	certain ms between words
+For a nice effect, I wanted the text to appear as if it was being typed.
+Small delays between letters and spaces. The first attempt worked well.
+There are some additional nuances I want to add, but this already is
+better.
+
+
+TODO this is a little slow. Tweak the timing to perfect.
+TODO when the delay is happening, it put the result (with time) then
+	changes the controls. I think it should do that early.
 TODO add music. Think background to detective film from 50's
 TODO check against original game I/O
 TODO this game has scrolling. Is it needed? I say no.
