@@ -317,6 +317,9 @@
 
     turn++;
     submitBtn.disabled = true;
+    numA.value = '';
+    numB.value = '';
+    numA.focus();
 
     if (a === b) {
       addLine(`Turn ${turn}: ${a} and ${b}`, 'you');
@@ -349,9 +352,6 @@
     }
 
     tryStatus.textContent = `TRY ${turn + 1} OF ${MAX_TURNS}`;
-    numA.value = '';
-    numB.value = '';
-    numA.focus();
     submitBtn.disabled = false;
   }
 
