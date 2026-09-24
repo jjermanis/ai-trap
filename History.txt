@@ -33,7 +33,7 @@ There are some additional nuances I want to add, but this already is
 better.
 
 
-Version 01.05	4 minutes dev	0 minute CPU	1 minute test		1 hour
+Version 01.05	4 minutes dev	0 minutes CPU	1 minute test		1 hour
 
 Before, the order of events after a guess didn't matter - the effect was
 instant. Now with the delay of printing, the order stood out. I changed the
@@ -46,8 +46,14 @@ This worked on the first attempt from Claude.
 There are still some minor changes needed.
 
 
+Version 01.06	4 minutes dev	0 minutes CPU	1 minute test		1 hour 5
 
-TODO this is a little slow. Tweak the timing to perfect.
+As indicated in the previous version, some changes were needed to the timing.
+The times were dropped substantially. Also, so random delays were added for
+each steps, to give a mild natural flow.
+
+
+
 TODO the turn number and Game In Progress... I think they need tweaking
 TODO add music. Think background to detective film from 50's
 TODO check against original game I/O
