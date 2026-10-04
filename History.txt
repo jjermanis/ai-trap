@@ -53,8 +53,15 @@ The times were dropped substantially. Also, so random delays were added for
 each steps, to give a mild natural flow.
 
 
+Version 01.07	11 minutes dev	1 minute CPU	3 minutes test		1 hour 20
 
-TODO the turn number and Game In Progress... I think they need tweaking
+The UI for the Turn Number and Game Status were a little out-of-date. They
+were being updated to be set after all the typing had been done - they
+should have been sent before. This was fairly easy: the initial fix had a
+case for when a new game starts. But the UI for this is clean now.
+
+
+
 TODO add music. Think background to detective film from 50's
 TODO check against original game I/O
 TODO this game has scrolling. Is it needed? I say no.

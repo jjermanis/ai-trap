@@ -270,14 +270,14 @@
     over = false;
     errorMsg.textContent = '';
     submitBtn.disabled = true;
+    tryStatus.textContent = `TRY 1 OF ${MAX_TURNS}`;
+    gameStatus.textContent = 'GAME IN PROGRESS';
     if (isFirst) {
       await typeLine("I'm thinking of a number from 1 to 100. Six turns to trap it.", 'sys');
     } else {
       addDivider('— NEW GAME —');
       await typeLine("New number picked. Six turns to trap it.", 'sys');
     }
-    tryStatus.textContent = `TRY 1 OF ${MAX_TURNS}`;
-    gameStatus.textContent = 'GAME IN PROGRESS';
     submitBtn.disabled = false;
     numA.value = '';
     numB.value = '';
@@ -288,11 +288,11 @@
     over = true;
     submitBtn.disabled = true;
     if (won) {
-      await typeLine(`YOU GOT IT! The number was ${secret}.`, 'win');
       gameStatus.textContent = 'YOU WIN';
+      await typeLine(`YOU GOT IT! The number was ${secret}.`, 'win');
     } else {
-      await typeLine(`Out of turns. The number was ${secret}.`, 'lose');
       gameStatus.textContent = 'YOU LOSE';
+      addLine(`Out of turns. The number was ${secret}.`, 'lose');
     }
     setTimeout(() => startGame(false), 1800);
   }
@@ -329,6 +329,9 @@
         endGame(true);
         return;
       }
+      if (turn < MAX_TURNS) {
+        tryStatus.textContent = `TRY ${turn + 1} OF ${MAX_TURNS}`;
+      }
       if (secret > a) {
         await typeLine('My number is larger than your guess.', 'warn');
       } else {
@@ -338,6 +341,10 @@
       const low = Math.min(a, b);
       const high = Math.max(a, b);
       addLine(`Turn ${turn}: ${low} and ${high}`, 'you');
+
+      if (turn < MAX_TURNS) {
+        tryStatus.textContent = `TRY ${turn + 1} OF ${MAX_TURNS}`;
+      }
 
       if (secret >= low && secret <= high) {
         await typeLine('Trapped — my number is between your two guesses.', 'warn');
@@ -353,7 +360,6 @@
       return;
     }
 
-    tryStatus.textContent = `TRY ${turn + 1} OF ${MAX_TURNS}`;
     submitBtn.disabled = false;
   }
 
